@@ -1,0 +1,16 @@
+{
+    "tests": [
+        {
+            "name": "test_prepare_train_test_splits (tests.grade_assignments.GradeAssignment)",
+            "score": 3.0,
+            "max_score": 3.0,
+            "status": "passed",
+            "output": "\n\nExists Split Data: True\nValid Result Exists: True\nProper Split: True\nLength X: 50\nLength X Train: 40\nLength X Test: 10\n",
+            "number": "1.1"
+        }
+    ],
+    "leaderboard": [],
+    "visibility": "visible",
+    "execution_time": "0.46",
+    "score": 3.0
+}
