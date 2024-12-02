@@ -261,7 +261,7 @@ def execute_cell(python_code, namespace):
     except Exception as e:
         print(f"Error executing the code: {traceback.format_exc()}")
 
-def extract_variables(notebook_path, cell_idx=-1):
+def extract_variables(notebook_path, cell_idx=-1, begin_cell_idx=-1):
     """
     Extracts variables from the notebook up to the specified cell index.
     Tracks variable renaming, so renamed variables are included.
@@ -274,6 +274,8 @@ def extract_variables(notebook_path, cell_idx=-1):
 
     for index, cell in enumerate(nb.cells):
         if cell.cell_type == 'code':
+            if begin_cell_idx != -1 and index <= begin_cell_idx:
+                continue
             if cell_idx != -1 and index > cell_idx:
                 break
             python_code = exporter.from_notebook_node(nbformat.v4.new_notebook(cells=[cell]))[0]
@@ -282,6 +284,7 @@ def extract_variables(notebook_path, cell_idx=-1):
             execute_cell(python_code, namespace)            
     
     return namespace
+
 
 def extract_initial_variables(notebook_path):
     """Extracts all variables initially loaded in the notebook, tracking renamed variables."""
